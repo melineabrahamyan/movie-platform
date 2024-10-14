@@ -54,7 +54,12 @@ const Featured = () => {
       {featuredMovie && (
         <div className="z-1 relative text-white">
           <h3 className="font-semibold uppercase text-[grey]">{featuredMovie.Category}</h3>
-          <Image src={`/${featuredMovie.TitleImage}`} width={600} height={74} alt="title" />
+          <Image
+            src={`/cover-photos/${featuredMovie.TitleImage}`}
+            width={600}
+            height={74}
+            alt="title"
+          />
           <div className="my-1 flex gap-2">
             <span>{featuredMovie.ReleaseYear}</span>
             <span>{featuredMovie.MpaRating}</span>
