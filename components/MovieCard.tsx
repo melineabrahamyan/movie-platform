@@ -1,11 +1,11 @@
 import { useFeaturedMovie } from '@/context/FeaturedMovieContext';
-import { Movie } from '@/types/Movie';
+import { IMovie } from '@/common';
 
-interface MovieCardProps {
-  movie: Movie;
+interface IMovieCardProps {
+  movie: IMovie;
 }
 
-const MovieCard = ({ movie }: MovieCardProps) => {
+const MovieCard = ({ movie }: IMovieCardProps) => {
   const { setFeaturedMovie } = useFeaturedMovie();
   const handleClick = () => {
     sessionStorage.setItem('featuredMovie', movie.Id);
@@ -16,7 +16,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
     <div
       className="movie-card h-full cursor-pointer bg-cover bg-center p-1"
       style={{
-        backgroundImage: `url(${movie.CoverImage})`,
+        backgroundImage: `url(cover-photos/${movie.CoverImage})`,
       }}
       onClick={handleClick}
     ></div>

@@ -1,6 +1,6 @@
 'use client';
+import { formatDuration } from '@/common';
 import { useFeaturedMovie } from '@/context/FeaturedMovieContext';
-import { formatDuration } from '@/util/helpers/formatDuration';
 import Image from 'next/image';
 import { useRef, useEffect, useState } from 'react';
 
@@ -35,7 +35,7 @@ const Featured = () => {
     <div
       className={`featured relative flex h-full flex-col justify-center overflow-hidden bg-cover`}
       style={{
-        backgroundImage: `${!showVideo && featuredMovie?.CoverImage ? `url(${featuredMovie.CoverImage})` : ''} `,
+        backgroundImage: `${!showVideo && featuredMovie?.CoverImage ? `url(cover-photos/${featuredMovie.CoverImage})` : ''} `,
       }}
     >
       <div className="z-1 absolute inset-0 bg-gradient-to-tr from-background to-transparent opacity-60"></div>
@@ -58,14 +58,14 @@ const Featured = () => {
           <div className="my-1 flex gap-2">
             <span>{featuredMovie.ReleaseYear}</span>
             <span>{featuredMovie.MpaRating}</span>
-            <span>{formatDuration(featuredMovie.Duration)}</span>
+            <span>{formatDuration(Number(featuredMovie.Duration))}</span>
           </div>
           <p className="my-3 max-w-[700px] text-lg">{featuredMovie.Description}</p>
           <div className="flex gap-2">
             <button className="w-[150px] rounded-full bg-white py-2 text-lg font-bold text-black outline-none">
               Play
             </button>
-            <button className="bg-btn-gradient w-[150px] rounded-full py-2 text-lg font-bold text-white outline-none">
+            <button className="w-[150px] rounded-full bg-btn-gradient py-2 text-lg font-bold text-white outline-none">
               More Info
             </button>
           </div>

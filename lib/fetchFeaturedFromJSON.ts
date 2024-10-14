@@ -1,12 +1,11 @@
-import data from '../data/data.json';
-import { Movie } from '../types/Movie';
+import { IMovie, NullableType } from '@/common';
+import featuredMovie from '../data/movies/featured.json';
 
-export const fetchFeaturedFromJSON = async (): Promise<Movie | null> => {
+export const fetchFeaturedFromJSON = async (): Promise<NullableType<IMovie>> => {
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    const featuredMovie = data.Featured;
-    return featuredMovie || null;
+    return featuredMovie;
   } catch (error) {
     console.error(error);
     return null;

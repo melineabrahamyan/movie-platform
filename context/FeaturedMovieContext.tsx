@@ -3,17 +3,17 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { fetchFeaturedFromJSON } from '@/lib/fetchFeaturedFromJSON';
 import { fetchFeaturedMovie } from '@/lib/fetchFeaturedMovie';
-import { Movie } from '@/types/Movie';
+import { FeaturedMovieProviderError, IMovie, NullableType, TChildren } from '@/common';
 
 interface FeaturedMovieContextType {
-  featuredMovie: Movie | null;
-  setFeaturedMovie: (movie: Movie | null) => void;
+  featuredMovie: NullableType<IMovie>;
+  setFeaturedMovie: (movie: NullableType<IMovie>) => void;
 }
 
 const FeaturedMovieContext = createContext<FeaturedMovieContextType | undefined>(undefined);
 
-export const FeaturedMovieProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [featuredMovie, setFeaturedMovie] = useState<Movie | null>(null);
+export const FeaturedMovieProvider: React.FC<TChildren> = ({ children }) => {
+  const [featuredMovie, setFeaturedMovie] = useState<NullableType<IMovie>>(null);
 
   useEffect(() => {
     const movieId = sessionStorage.getItem('featuredMovie');
@@ -40,7 +40,7 @@ export const FeaturedMovieProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useFeaturedMovie = () => {
   const context = useContext(FeaturedMovieContext);
   if (!context) {
-    throw new Error('useFeaturedMovie must be used within a FeaturedMovieProvider');
+    throw new FeaturedMovieProviderError();
   }
   return context;
 };

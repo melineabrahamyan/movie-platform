@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { NullableType, TMenuItem } from '@/common';
 
-const menuItems = [
+const menuItems: TMenuItem[] = [
   { name: 'Search', icon: '/icons/search.png' },
   { name: 'Home', icon: '/icons/home.png' },
   { name: 'TV Shows', icon: '/icons/tvShows.png' },
@@ -16,7 +17,7 @@ const additionalMenuItems = ['Language', 'Get Help', 'Exit'];
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<NullableType<string>>(null);
 
   const handleItemClick = (name: string) => {
     setSelectedItem(name);

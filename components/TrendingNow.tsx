@@ -5,7 +5,7 @@ import MovieCard from './MovieCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { fetchTrendingMovies } from '@/lib/fetchTrendingMovies';
-import { Movie } from '@/types/Movie';
+import { IMovie } from '@/common';
 
 const swiperOptions = {
   spaceBetween: 15,
@@ -28,7 +28,7 @@ const swiperOptions = {
 };
 
 const TrendingNow = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
 
   useEffect(() => {
     const getTrendingMovies = async () => {
